@@ -64,6 +64,9 @@ export class NoteService {
       }),
       body: value,
     };
-    return this.httpClient.delete("http://peacetran2018-001-site1.etempurl.com/api/Values?value=" + value, options);
+    return this.httpClient.delete("http://peacetran2018-001-site1.etempurl.com/api/Values?value=" + value, options)
+    .pipe(tap(() => {
+      this._refreshGetNote.next();
+    }));;
   }
 }
